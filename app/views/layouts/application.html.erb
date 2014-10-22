@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %> | Blog</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+<div id="wrapper">
+  <%= render 'layouts/header' %>
+  <% [:notice, :alert].each do |level| %>
+    <% if flash[level] %>
+      <div class="flash <%= level %>"><%= flash[level] %></div>
+    <% end %>
+    <% end %>
+  <%= yield %>
+  <%= sidebar %>
+  <%= render 'layouts/footer' %>
+  <% debug(params) if Rails.env.development? %>
+</div>
+</body>
+</html>

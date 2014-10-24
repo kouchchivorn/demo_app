@@ -1,0 +1,7 @@
+<article class="post">
+  <h2><%= link_to entry.title, entry %></h2>
+
+  <%= date_author_comments(entry) %>
+  <%= author_edit_link(entry) %>
+  <p><%= link_to raw('Read More &raquo;'), entry %></p>
+</article>

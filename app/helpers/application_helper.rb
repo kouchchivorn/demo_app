@@ -4,13 +4,13 @@ module ApplicationHelper
     str += '<aside class="sidebar">'
     str += '<div id="logged_in">'
     if signed_in?
-      str += "<p id=""user_info"">#{current_user}<br>#{link_to('Logout', signout_path, :method => :delete)}</p>"
+      str += "<p id=""user_info"">#{gravatar_for current_user} #{link_to(current_user.name, user_path(current_user))}<br>#{link_to('Logout', signout_path, :method => :delete)}</p>"
     else
-      str += "<p id=""user_info"">#{link_to('Login', signin_path)} | #{link_to('Register', signup_path)}</p>"
+      str += "<p id=""user_info"">#{link_to('Signin', signin_path)} | #{link_to('Signup', signup_path)}</p>"
     end
     str += '</div>'
     str += '<div id="new_post">'
-    str += "<p>#{link_to('New Entry', new_entry_path)}</p>"
+    str += "<p>#{link_to('New Entry', newentry_path)}</p>"
     str += '</div>'
     str += '</aside>'
     raw(str)

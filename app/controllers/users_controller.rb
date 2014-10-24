@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user =User.new(params[:user])
+    @user =User.new(user_params)
     if @user.save
+      sign_in @user
       flash[:success] = "Welcome to Blog"
       redirect_to @user
     else
@@ -15,6 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @entry = @user.entries.build
+    @feed_items =@user.feed.paginate(page: params[:page])
   end
 
   private

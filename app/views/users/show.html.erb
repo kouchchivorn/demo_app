@@ -1,6 +1,16 @@
 <% provide(:title, @user.name) %>
 
-<h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-</h1>
+<h4>
+    <%= gravatar_for @user, size: 50 %> <%= @user.name %><br >
+
+</h4>
+<h4 id="personal_blog"> Personal Blog </h4>
+<section class="stats">
+  <%= render 'shared/stats' %>
+</section>
+
+<%= render 'follow_form' if signed_in? %>
+<hr>
+<div class="col-md-8">
+      <%= render 'shared/feed' %>
+</div>

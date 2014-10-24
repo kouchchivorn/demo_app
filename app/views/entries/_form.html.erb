@@ -1,0 +1,16 @@
+
+<%= form_for @entry do |f| %>
+  <div id="entry_title">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div id="entry_content">
+    <%= f.label :content %>
+    <%= f.text_area :content, size: "35x12" %>
+  </div>
+  <div>
+    <%= f.submit @entry.new_record? ? "Create Post" : "Update Post",  class: "btn btn-large btn-primary"  %>
+  </div>
+<% end %>
+

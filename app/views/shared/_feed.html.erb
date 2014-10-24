@@ -1,0 +1,7 @@
+<% if @feed_items.any? %>
+  <section class="listing">
+  <%= render @feed_items %>
+  <%= will_paginate @feed_items %>
+</section>
+<% end %>
+

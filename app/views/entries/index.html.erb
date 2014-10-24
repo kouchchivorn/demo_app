@@ -1,0 +1,12 @@
+<h1>ALL ENTRIES</h1>
+
+<section class="listing">
+  <% if signed_in? %>
+    <%= render 'shared/feed' %>
+  <% else %>
+    <%= render @entries %>
+    <%= will_paginate @entries %>
+  <% end %>
+
+
+</section>

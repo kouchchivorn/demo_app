@@ -21,25 +21,31 @@ class User < ActiveRecord::Base
         SecureRandom.urlsafe_base64
     end
 
+    #def feed
+      #  Entry.where("user_id = ?", id)
+    #end
+
     def User.digest(token)
         Digest::SHA1.hexdigest(token.to_s)
     end
 
     def feed
-        Micropost.from_users_followed_by(self)
+        Entry.from_users_followed_by(self)
     end
 
-    def following?(other_user)
-        relationships.find_by(followed_id: other_user.id)
-    end
+  def follow(other_user)
+    relationships.create(followed_id: other_user.id)
+  end
 
-    def follow!(other_user)
-        relationships.create!(followed_id: other_user.id)
-    end
+  # Unfollows a user.
+  def unfollow(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
+  end
 
-    def unfollow!(other_user)
-        relationships.find_by(followed_id: other_user.id).destroy
-    end
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    followed_users.include?(other_user)
+  end
 
     def forget
       update_attribute(:remember_token, nil)

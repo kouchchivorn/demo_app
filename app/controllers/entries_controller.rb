@@ -7,7 +7,7 @@ class EntriesController < ApplicationController
 
   def index
     if signed_in?
-      @micropost  = current_user.microposts.build
+      @entries  = current_user.entries.build
       @feed_items = current_user.feed.paginate(page: params[:page])
     else
       @entries = Entry.paginate(:page => params[:page])
